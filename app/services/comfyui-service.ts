@@ -66,7 +66,13 @@ export class ComfyUIService {
                                     }
                                 } catch (error) {
                                     console.error(error);
-                                    continue;
+                                    if (textOutputEnabled) {
+                                        outputBuffer = new File([file], `text_${Date.now()}.txt`, {
+                                            type: "text/plain"
+                                        });
+                                    } else {
+                                        return;
+                                    }
                                 }
                             }
                             else {
